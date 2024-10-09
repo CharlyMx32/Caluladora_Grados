@@ -2,17 +2,23 @@ package com.example.caluladoragrados;
 
 public class Celsius extends Grados {
 
-        public Celsius(double grados) {
-            super(grados);
-        }
+    public Celsius(double valor, String unidad) {
+        super(valor, unidad);
+    }
 
-        // Convierte Celsius a Kelvin
-        public Kelvin Parse(Kelvin k) {
-            return new Kelvin(getGrados() + 273.15);
-        }
+    public Celsius parse(Fahrenheit f) {
+        // Conviertes de Fahrenheit a Celsius
+        Double celsius = (f.getValor() - 32) * 5 / 9;
+        return new Celsius(celsius, "°C");
+    }
 
-        // Convierte Celsius a Fahrenheit
-        public Fahrenheint Parse(Fahrenheint f) {
-            return new Fahrenheint((getGrados() * 9/5) + 32);
-        }
+    public Celsius parse(Kelvin k) {
+        double celsius = k.getValor() - 273.15;
+        return new Celsius(celsius, "°C");
+    }
+
+    @Override
+    public String toString() {
+        return valor + " °C";
+    }
 }
